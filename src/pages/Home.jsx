@@ -1,9 +1,11 @@
 import React from 'react'
+import Nav from "../components/homeComponents/Nav.jsx"
 
 const Home = () => {
   return (
     <div>
-      Home
+      <Nav />
+      <h1>Home</h1>
     </div>
   )
 }
