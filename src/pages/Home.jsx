@@ -33,8 +33,8 @@ const Home = () => {
             <div>la créativité</div>
         </div>
         <div className="flex justify-between mb-2 items-center gap-3 ">
-          <Button  content={"Projects"}/>
-          <Button  content={"Agence"}/>
+          <Button  content={"Projects"} to={"/project"}/>
+          <Button  content={"Agence"} to={"/agence"}/>
         </div>
       </div>
     </div>
