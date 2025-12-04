@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 import img01 from "../assets/Images/01.png";
 import img02 from "../assets/Images/02.png";
 import img03 from "../assets/Images/03.png";
@@ -27,7 +28,7 @@ const Agence = () => {
     img07,
     img08,
     img09,
-    img10
+    img10,
   ];
 
   gsap.registerPlugin(ScrollTrigger);
@@ -38,40 +39,42 @@ const Agence = () => {
         trigger: imgDivRef.current,
         start: "top 23%",
         end: "top -100%",
-        scrub: true,
+        scrub: 1,
         markers: true,
         pin: true,
+        // pinSpacing: true,
+        pinType: "transform",
+
+        // IMPORTANT FIX — avoid DOM reparenting (causes wrong positioning)
+        // pinReparent: true,
+
+        // anticipatePin: 1,
+        // invalidateOnRefresh: true,
+
         onUpdate: (self) => {
           let rawIndex = self.progress * imgArray.length;
           let index = Math.floor(rawIndex);
 
-          // Keep index inside valid range
           if (index >= imgArray.length) index = imgArray.length - 1;
           if (index < 0) index = 0;
 
-          // Your custom logic: last 5 images after reaching end
           let finalIndex = index;
- 
+
           if (self.progress >= 1) {
             finalIndex = imgArray.length - 5;
           }
 
           imgRef.current.src = imgArray[finalIndex];
-          // const random = Math.floor(Math.random() * (imgArray.length - 1))
-          // console.log(random)
-          // imgRef.current.src = imgArray[random];
-
-          
         },
       },
     });
   }, []);
 
   return (
-    <div>
+    <div className="py-1 "> {/* FIX: parent must be relative */}
       <div
         ref={imgDivRef}
-        className="w-[15vw] h-[19vw] rounded-[1.5vw] overflow-hidden absolute top-38 left-[30%]"
+        className="w-[15vw] h-[19vw] rounded-[1.2vw] overflow-hidden absolute top-3 left-[30%]"
       >
         <img
           ref={imgRef}
@@ -97,13 +100,6 @@ const Agence = () => {
           </div>
         </div>
       </div>
-
-      {/* Preload images
-      <div style={{ display: "none" }}>
-        {imgArray.map((img, i) => (
-          <img key={i} src={img} alt="" />
-        ))}
-      </div> */}
     </div>
   );
 };
