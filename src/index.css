@@ -8,7 +8,37 @@
 }
 
 @import "tailwindcss";
+html, body, #root {
+  background-color: transparent; /* or black if you want a black page background */
+}
 
 body {
     overflow-x: hidden;
+}
+
+.moveX {
+  animation-name: moveH;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+
+@keyframes moveH {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.moveLink {
+    opacity: 0;
+    transition: 0.2s ease-in-out;
+}
+
+.link:hover .moveLink {
+    opacity: 100;
+    top: 0;
 }

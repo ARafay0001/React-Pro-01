@@ -5,7 +5,7 @@ import Home from "./pages/Home.jsx"
 import Project from "./pages/Project.jsx" 
 import Agence from "./pages/Agence.jsx" 
 import NavBar from './components/NavBar.jsx'
-import FullNav from './components/FullNav.jsx'
+import NavMenu from './components/NavMenu.jsx'
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
       <div>
       
       <NavBar />
-      <FullNav />
+      <NavMenu />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/project" element={<Project />} />
