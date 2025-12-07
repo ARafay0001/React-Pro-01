@@ -1,14 +1,21 @@
 import React, { useContext, useRef } from "react";
 import Logo from "./homeComponents/Logo.jsx";
 import { NavContext } from "../Contexts/NavContext.js"; // import context, NOT provider
-
+import { useLocation } from "react-router-dom";
 const NavBar = () => {
+    const location = useLocation();
+
+  // Define routes where the logo should be white
+  const whiteLogoRoutes = ["/project"];
+  const white = "white"
+  const black = "black"
+  const isWhiteLogo = whiteLogoRoutes.includes(location.pathname);
   const { setState } = useContext(NavContext); // useContext with NavContext
   const green = useRef(null);
 
   return (
     <div className="flex w-full max-w-[1920px] justify-between absolute z-10">
-      <Logo />
+      <Logo color={isWhiteLogo ? black: white } />
       <div
         onClick={() => setState(true)}
         onMouseEnter={() => (green.current.style.height = "100%")}
